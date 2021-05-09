@@ -1,11 +1,11 @@
 {
     "name": "3rd-cookie-check",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Check cookie",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "test": "no test"
+        "buildAndPublish": "webpack && npm publish"
     },
     "repository": {
         "type": "git",

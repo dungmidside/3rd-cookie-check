@@ -15,7 +15,7 @@ export default function cookieCheck(
     return new Promise<Result>((resolve) => {
         const frame = document.createElement('iframe')
         frame.id = '3pc'
-        frame.src = 'https://jaspftc.cookie'
+        frame.src = 'https://thirdpartycookie.monster'
         frame.style.display = 'none'
         frame.style.position = 'fixed'
 
