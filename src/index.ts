@@ -7,7 +7,8 @@ let thirdCookieSupport: boolean | null = null
 
 export default function cookieCheck(
     timeout?: number,
-    eventCode?: string
+    eventCode?: string,
+    src?: string,
 ): Promise<Result> {
     if (thirdCookieSupport !== null) {
         return Promise.resolve({ support: thirdCookieSupport })
@@ -15,7 +16,7 @@ export default function cookieCheck(
     return new Promise<Result>((resolve) => {
         const frame = document.createElement('iframe')
         frame.id = '3pc'
-        frame.src = 'https://thirdpartycookie.monster'
+        frame.src = src || 'https://dungmidside.github.io/3rd-cookie-check/checkpage.html'
         frame.style.display = 'none'
         frame.style.position = 'fixed'
 
