@@ -1,36 +1,55 @@
 interface Result {
-    support: boolean | null
+    supported: boolean | null
     timeout?: boolean
+}
+
+interface EventCode {
+    supported: string
+    unsupported?: string
+}
+
+interface Params {
+    timeout?: number
+    eventCode?: EventCode
+    iframeSrc?: string
 }
 
 let thirdCookieSupport: boolean | null = null
 
-export default function cookieCheck(
-    timeout?: number,
-    eventCode?: string,
-    src?: string,
-): Promise<Result> {
+export default function cookieCheck(param: Params): Promise<Result> {
     if (thirdCookieSupport !== null) {
-        return Promise.resolve({ support: thirdCookieSupport })
+        return Promise.resolve({ supported: thirdCookieSupport })
     }
+
+    const { timeout, eventCode, iframeSrc } = param;
+
     return new Promise<Result>((resolve) => {
         const frame = document.createElement('iframe')
         frame.id = '3pc'
-        frame.src = src || 'https://dungmidside.github.io/3rd-cookie-check/checkpage.html'
+        frame.src =
+            iframeSrc ||
+            'https://dungmidside.github.io/3rd-cookie-check/checkpage.html'
         frame.style.display = 'none'
         frame.style.position = 'fixed'
 
         window.addEventListener(
             'message',
             function listen(event) {
+                const { data: eventData } = event
                 if (
-                    (eventCode && event.data === eventCode) ||
+                    // handle for custom event code
+                    (eventCode &&
+                        (eventData === eventCode.supported ||
+                            eventData === eventCode.unsupported)) ||
+                    // fallback case
                     (!eventCode &&
-                        (event.data === '3pc.supported' ||
-                            event.data === '3pc.unsupported'))
+                        (eventData === '3pc.supported' ||
+                            eventData === '3pc.unsupported'))
                 ) {
-                    thirdCookieSupport = event.data === '3pc.supported'
-                    resolve({ support: thirdCookieSupport, timeout: false })
+                    thirdCookieSupport = eventCode
+                        ? eventData === eventCode.supported
+                        : eventData === '3pc.supported'
+                    resolve({ supported: thirdCookieSupport, timeout: false })
                     document.body.removeChild(frame)
                     window.removeEventListener('message', listen)
                 }
@@ -38,10 +57,11 @@ export default function cookieCheck(
             false
         )
 
+        // Use timeout in case browser not trigger event message for our code
         setTimeout(function () {
             if (thirdCookieSupport === null) {
                 thirdCookieSupport = false
-                resolve({ support: thirdCookieSupport, timeout: true })
+                resolve({ supported: thirdCookieSupport, timeout: true })
                 document.body.removeChild(frame)
             }
         }, timeout || 1000)
