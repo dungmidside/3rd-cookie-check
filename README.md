@@ -1,5 +1,8 @@
 # 3rd cookie check
 This is a library that help you check current browser support "Third party cookie" or not
+
+<img src="https://dungmidside.github.io/3rd-cookie-check/cookie-setting.png" width="800" alt="cookie setting image"/>
+
 ### Installation
 npm - `npm install --save 3rd-cookie-check`
 
