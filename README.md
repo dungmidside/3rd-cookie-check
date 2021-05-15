@@ -1,10 +1,10 @@
-#3rd cookie check
+# 3rd cookie check
 This is a library that help you check current browser support "Third party cookie" or not
-###Installation
+### Installation
 npm - `npm install --save 3rd-cookie-check`
 
 yarn - `yarn add 3rd-cookie-check`
-###Usage
+### Usage
 ES6
 ```javascript
 import cookieCheck from '3rd-cookie-check';
@@ -17,7 +17,7 @@ cookieCheck().then(function(result) {
     // Your code here
 })
 ```
-###Parameters
+### Parameters
 ```javascript
 cookieCheck(parametersObject)
 ```
@@ -26,16 +26,16 @@ All parameters is optional
 | Param | Type | Describe | Default value |
 | ----- | -------- | ----------- | ------------- |
 | timeout  | number | Timeout in milisecond | 1000 |
-| eventCode | object | { supported: string, unsupported: string }<br>Use this when use need to change the browser event message for third party cookie feature | <code>{ <br>&nbsp;&nbsp;supported: "3pc.supported", <br>&nbsp;&nbsp;unsupported: "3pc.unsupported" }</code>
+| eventCode | object | { supported: string, unsupported: string }<br>Use this when use need to change the browser event message for third party cookie feature | <code>{<br/>&nbsp;&nbsp;supported: "3pc.supported", <br>&nbsp;&nbsp;unsupported: "3pc.unsupported" }</code>
 | iframeSrc | string | In case you need to use your own page for check cookie <br>This URL domain must be difference from your app domain, this make sure browser fire third cookie event message| https://dungmidside.github.io/3rd-cookie-check/checkpage.html|
 
-###Return value
+### Return value
 An object with 2 fields
 - `supported` - indicate browser support status
 - `timeout` - default `false` - `true` if timeout was triggered
 
 
-###Changes
+### Changes
 1.0.1
 - First version of package
 
