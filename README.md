@@ -1,20 +1,26 @@
 # 3rd cookie check
+===========
+[![NPM version](https://badgen.net/npm/v/3rd-cookie-check)](https://www.npmjs.com/package/3rd-cookie-check)
+![Node.js CI](https://github.com/dungmidside/3rd-cookie-check/workflows/Build%20and%20Deploy/badge.svg)
+[![NPM Weekly Downloads](https://badgen.net/npm/dw/3rd-cookie-check)](https://www.npmjs.com/package/3rd-cookie-check)
+[![License](https://badgen.net/npm/license/3rd-cookie-check)](https://www.npmjs.com/package/3rd-cookie-check)
+
 This is a library that help you check current browser support "Third party cookie" or not
 
 <img src="https://dungmidside.github.io/3rd-cookie-check/cookie-setting.png" width="800" alt="cookie setting image"/>
 
-### Installation
-npm - `npm install --save 3rd-cookie-check`
+### Checklist
+- [ ] Support safari
+- [ ] Add tested browser information 
 
-yarn - `yarn add 3rd-cookie-check`
+### Installation
+`npm install --save 3rd-cookie-check`
+
+`yarn add 3rd-cookie-check`
 ### Usage
-ES6
 ```javascript
 import cookieCheck from '3rd-cookie-check';
-const { supported, timeout } = await cookieCheck();
-```
-ES5
-```javascript
+
 cookieCheck().then(function(result) {
     const { supported, timeout } = result;
     // Your code here
@@ -33,10 +39,9 @@ All parameters is optional
 | iframeSrc | string | In case you need to use your own page for check cookie <br>This URL domain must be difference from your app domain, this make sure browser fire third cookie event message| https://dungmidside.github.io/3rd-cookie-check/checkpage.html|
 
 ### Return value
-An object with 2 fields
-- `supported` - indicate browser support status
-- `timeout` - default `false` - `true` if timeout was triggered
-
+An Promise that resolve with a object have 2 properties:
+- `supported` - boolean - indicate browser support status. Return `false` if timeout  
+- `timeout` - boolean - default `false` - `true` if timeout was triggered
 
 ### Changes
 1.0.1
