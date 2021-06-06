@@ -1,5 +1,6 @@
 # 3rd cookie check
 ===========
+
 [![NPM version](https://badgen.net/npm/v/3rd-cookie-check)](https://www.npmjs.com/package/3rd-cookie-check)
 ![Node.js CI](https://github.com/dungmidside/3rd-cookie-check/workflows/Build%20and%20Deploy/badge.svg)
 [![NPM Weekly Downloads](https://badgen.net/npm/dw/3rd-cookie-check)](https://www.npmjs.com/package/3rd-cookie-check)
@@ -14,9 +15,12 @@ This is a library that help you check current browser support "Third party cooki
 - [ ] Add tested browser information 
 
 ### Installation
-`npm install --save 3rd-cookie-check`
-
-`yarn add 3rd-cookie-check`
+```bash
+# npm
+npm install --save 3rd-cookie-check`
+# or yarn
+yarn add 3rd-cookie-check
+```
 ### Usage
 ```javascript
 import cookieCheck from '3rd-cookie-check';
